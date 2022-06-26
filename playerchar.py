@@ -93,3 +93,6 @@ class PlayerCharacter(arcade.Sprite):
         self.texture = self.run_textures[self.cur_texture][
             self.character_face_direction
         ]
+
+    def attack(self):
+        print("ATTACK!!")

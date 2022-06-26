@@ -21,6 +21,7 @@ class NestePlanet(arcade.Window):
         self.up_pressed = False
         self.down_pressed = False
         self.jump_needs_reset = False
+        self.ctrl_pressed = False
 
         # Init variables
         self.scene = None
@@ -36,7 +37,7 @@ class NestePlanet(arcade.Window):
         self.enemies_layer = None
 
 
-        arcade.set_background_color(arcade.csscolor.CORNFLOWER_BLUE)
+        arcade.set_background_color(arcade.csscolor.THISTLE)
 
         
         # Load sounds
@@ -172,8 +173,13 @@ class NestePlanet(arcade.Window):
         else:
             self.player_sprite.change_x = 0
 
+        # Process attack
+        if self.ctrl_pressed:
+            self.player_sprite.attack()
+
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed."""
+
 
         if key == arcade.key.SPACE:
             self.up_pressed = True
@@ -183,6 +189,8 @@ class NestePlanet(arcade.Window):
             self.left_pressed = True
         elif key == arcade.key.RIGHT or key == arcade.key.D:
             self.right_pressed = True
+        elif key == arcade.key.LCTRL:
+            self.ctrl_pressed = True
         self.process_keychange()
 
     def on_key_release(self, key, modifiers):
@@ -197,6 +205,8 @@ class NestePlanet(arcade.Window):
             self.left_pressed = False
         elif key == arcade.key.RIGHT or key == arcade.key.D:
             self.right_pressed = False
+        elif key == arcade.key.LCTRL:
+            self.ctrl_pressed = False
 
         self.process_keychange()
 
@@ -234,6 +244,7 @@ class NestePlanet(arcade.Window):
         # Update enemy if moving
         self.scene.update([settings.LAYER_NAME_ENEMY])
 
+        # Check collision with boundary set in Tiledmap
         for enemy in self.scene[settings.LAYER_NAME_ENEMY]:
             if (
                 enemy.boundary_right
@@ -249,14 +260,15 @@ class NestePlanet(arcade.Window):
             ):
                 enemy.change_x *= -1
 
-        """# Check mana pickup
+
+        # Check mana pickup
         mana_hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.scene["Mana"])
         for mana in mana_hit_list:
             mana.remove_from_sprite_lists()
             arcade.play_sound(self.collect_mana_sound)
             # Add 1 mana
             self.mana += 1
-        """
+        
 
         # Position camera
         self.center_camera_to_player()

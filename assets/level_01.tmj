@@ -4,7 +4,7 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt3d1OwjAYgOGiyJk\/4UxFbkC9\/9tzS0wgS5lboVtbnyf5jhjQHb1ZgRECAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAApXj6HQAo1cvaC7ixx3Dqb64BgNK01vN90HMA\/h8913MA6qfneg5A\/fRczwGon56HcJh5PACUpvWeb8P8vus5ALVpveexOU44ZjfyGACUprWev3bzMDJvI3Op4dvI6wBASVrr+TXGru0BoGR6fnKp589rLgoAJjisvYCC9Hv1sX349zUXBQATuD4HgPrpOQDUL9d++6abuxmT830+InN\/xXsCQGlyXZ+ff7csxWc3X4P5jhyX+v+oKd9x2yQ8BwCWsMvwmn2Lz+\/ZktOSPd\/fYL0AkEOO\/fbh775ySu15f97DPfi\/9u2Pmc8FAFL1XZvzOfeUWfJeLKk9d+92AFpSewP1HABC+AECvBn6",
+         "data":"eJzt3ctOhDAABdD63PmIcaOOLnWhbowf4P9\/ldOoEUdaoVIY6znJTRxDpLC5tpBOCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\/Fe3PblbdEQAwFhP6xyvc\/6e+Pl50REBACW6fR7zEszTAdhep0sPYGJH4a2Lf5vzxM\/H810KAAzWWp+fhWn6PBcA2Db6fHweNvI4y5UBQJo+Nz8H4O\/T5\/ocgL9Pn4ewGnl8zn34vh5vTR6A2lrv8\/0wvt9zae1+AdCG1vppyPz8ZsAxh4nft3a\/AGhDa\/10sc5BJpeZpDp8c46\/28nePJcFAFmt9flvpOb2qXsU966JXe\/5OABL0+efUn1+kjg+rgVczTM0AMhaLT2ALRL7uW8dXmcDsO3Mz6ezE74+W\/8IANSmz6eTWq8HgNpqrben5qqplL5PNuQ81z2p8V66PgdgKbXm591uK9G3z1pf55d+P2rqHbecnZ7P3f8b7A8LwFIOK\/zN2MXdPVtqmrPPzwrPDQC11Vhv31x3rqm0z+N1b67B\/7Ruf1N4bgCoLfbamOfcQzJnn5X2eWlKzg0Atc3dgVNrpc9z7\/XZUxaAn7wCovcixw==",
          "encoding":"base64",
          "height":100,
          "id":1,
@@ -18,7 +18,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt1TEKwCAQBEAhfX4W0Cr\/\/4l1rrI4NcIMXLHNsd2WAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQIa6uwAAsNy1uwAA8NFCvgcOAPg3ew4A870hP8n\/7TkAnM+eA8D57DkAzNUBZ+QDvw==",
+         "data":"eJzt1bEJACAMAEEncDNBK\/ffxD6VhaLiHaRIE9J9SgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKxQTz8AAAAAn2thzxMDANxNzwFgvx72svi+ngPA+\/QcAN6n5wCw1wDczQO8",
          "encoding":"base64",
          "height":100,
          "id":2,
@@ -65,15 +65,15 @@
          "objects":[
                 {
                  "gid":85,
-                 "height":8,
+                 "height":16,
                  "id":2,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":8,
-                 "x":102.424,
-                 "y":3079.66
+                 "width":16,
+                 "x":3251.68589174412,
+                 "y":3132.96781848004
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -116,6 +116,21 @@
                  "point":true,
                  "properties":[
                         {
+                         "name":"boundary_left",
+                         "type":"int",
+                         "value":2430
+                        }, 
+                        {
+                         "name":"boundary_right",
+                         "type":"int",
+                         "value":2812
+                        }, 
+                        {
+                         "name":"change_x",
+                         "type":"int",
+                         "value":-2
+                        }, 
+                        {
                          "name":"type",
                          "type":"string",
                          "value":"zombie"
@@ -124,8 +139,8 @@
                  "type":"zombie",
                  "visible":true,
                  "width":0,
-                 "x":592.025718287867,
-                 "y":3138.43762710085
+                 "x":1238.24922106622,
+                 "y":3041.7099053474
                 }, 
                 {
                  "height":0,
@@ -136,12 +151,12 @@
                         {
                          "name":"boundary_left",
                          "type":"int",
-                         "value":300
+                         "value":800
                         }, 
                         {
-                         "name":"boundry_right",
+                         "name":"boundary_right",
                          "type":"int",
-                         "value":675
+                         "value":1340
                         }, 
                         {
                          "name":"change_x",
