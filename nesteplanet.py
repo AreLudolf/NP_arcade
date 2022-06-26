@@ -269,6 +269,13 @@ class NestePlanet(arcade.Window):
             # Add 1 mana
             self.mana += 1
         
+        # Enemy hit, ouch!
+        enemy_hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.scene[settings.LAYER_NAME_ENEMY])
+        for enemy in enemy_hit_list:
+            self.hp -= 1
+            self.player_sprite.change_y = settings.HIT_JUMP
+            
+
 
         # Position camera
         self.center_camera_to_player()

@@ -27,7 +27,8 @@ class PlayerCharacter(arcade.Sprite):
         self.character_face_direction = RIGHT_FACING
 
         # Used for flipping between image sequences
-        self.cur_texture = 0
+        self.cur_texture_run = 0
+        self.cur_texture_idle = 0
         self.scale = settings.CHARACTER_SCALING
 
         # Track our state
@@ -87,10 +88,10 @@ class PlayerCharacter(arcade.Sprite):
             return
 
         # Walking animation
-        self.cur_texture += 1
-        if self.cur_texture > 5:
-            self.cur_texture = 0
-        self.texture = self.run_textures[self.cur_texture][
+        self.cur_texture_run += 1
+        if self.cur_texture_run > 5:
+            self.cur_texture_run = 0
+        self.texture = self.run_textures[self.cur_texture_run][
             self.character_face_direction
         ]
 
