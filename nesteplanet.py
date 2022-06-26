@@ -273,8 +273,19 @@ class NestePlanet(arcade.Window):
         enemy_hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.scene[settings.LAYER_NAME_ENEMY])
         for enemy in enemy_hit_list:
             self.hp -= 1
+            self.left_pressed = False
+            self.right_pressed = False
+            self.up_pressed = False
+            self.down_pressed = False
+            self.jump_needs_reset = False
+            self.ctrl_pressed = False
             self.player_sprite.change_y = settings.HIT_JUMP
-            
+            if self.player_sprite.center_x - enemy.center_x < 0:
+                self.player_sprite.change_x = -settings.HIT_JUMP
+                # self pressed false
+            if self.player_sprite.center_x - enemy.center_x > 0:
+                self.player_sprite.change_x = settings.HIT_JUMP
+
 
 
         # Position camera
