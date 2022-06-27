@@ -2,6 +2,7 @@ import arcade
 import playerchar
 import settings
 import enemies
+import manaHUD
 import os
 import math
 
@@ -30,11 +31,14 @@ class NestePlanet(arcade.Window):
         self.camera = None
         self.gui_camera = None
         self.mana = 3
+        self.manahud_sprite = None
+        self.hphud_sprite = None
         self.hp = 3
         self.tile_map = None
         self.end_of_map = 0
         self.level = 1
         self.enemies_layer = None
+        self.manahud_sprite_list = None
 
 
         arcade.set_background_color(arcade.csscolor.THISTLE)
@@ -54,6 +58,7 @@ class NestePlanet(arcade.Window):
         self.gui_camera = arcade.Camera(self.width, self.height)
         self.reset_hp = True
         self.reset_mana = True
+        self.manahud_sprite_list = arcade.SpriteList()
 
         map_name = os.path.join(os.path.abspath(__file__), "..", "assets", "level_01.tmj")
         #map_name = "assets/level_01.tmj"
@@ -126,6 +131,32 @@ class NestePlanet(arcade.Window):
             self.scene[settings.LAYER_NAME_ENEMY], gravity_constant=settings.GRAVITY, walls=self.scene["ground"]
         )
 
+        # Mana count on HUD
+        self.manahud_list = arcade.SpriteList(use_spatial_hash=True)
+
+        mana_img = main_path = os.path.join(os.path.abspath(__file__), "..", "assets", "img", "items", "mana.png")
+        self.manahud_pos = 30
+        for mana in range(self.mana):
+            self.manahud_sprite = arcade.Sprite(mana_img, settings.MANA_HUD_SCALING)
+            self.manahud_sprite.center_x = self.manahud_pos
+            self.manahud_pos += self.manahud_sprite.width
+            self.manahud_sprite.center_y = 60
+            self.manahud_list.append(self.manahud_sprite)
+
+        # HP count on HUD
+        self.hp_sprite_list = arcade.SpriteList(use_spatial_hash=True)
+
+        hp_img = main_path = os.path.join(os.path.abspath(__file__), "..", "assets", "img", "items", "hp.png")
+        self.hphud_pos = 30
+        for mana in range(self.hp):
+            self.hphud_sprite = arcade.Sprite(hp_img, settings.HP_HUD_SCALING)
+            self.hphud_sprite.center_x = self.hphud_pos
+            self.hphud_pos += self.hphud_sprite.width
+            self.hphud_sprite.center_y = 30
+            self.hp_sprite_list.append(self.hphud_sprite)
+
+
+
     def on_draw(self):
         """Render the screen."""
         self.clear()
@@ -136,22 +167,10 @@ class NestePlanet(arcade.Window):
 
         
         self.gui_camera.use()
-        mana_text = f"mana: {self.mana}"
-        arcade.draw_text(
-            mana_text,
-            10,
-            10,
-            arcade.csscolor.WHITE,
-            18
-        )
-        hp_text = f"HP: {self.hp}"
-        arcade.draw_text(
-            hp_text,
-            10,
-            30,
-            arcade.csscolor.WHITE,
-            18
-        )
+
+        self.manahud_list.draw()
+        self.hp_sprite_list.draw()
+
     
 
     def process_keychange(self):
@@ -175,7 +194,12 @@ class NestePlanet(arcade.Window):
 
         # Process attack
         if self.ctrl_pressed:
-            self.player_sprite.attack()
+            if self.mana > 0:
+                self.player_sprite.attack()
+                self.manahud_list[self.mana-1].center_y = -100
+                self.mana -= 1
+            else:
+                print("Out of mana")
 
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed."""
@@ -228,6 +252,9 @@ class NestePlanet(arcade.Window):
     def on_update(self, delta_time):
         """Movement and game logic"""
 
+        for mana in self.manahud_sprite_list:
+            print(mana.center_y)
+
         # Move the player with the physics engine
         self.physics_engine.update()
 
@@ -263,15 +290,25 @@ class NestePlanet(arcade.Window):
 
         # Check mana pickup
         mana_hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.scene["Mana"])
+        
         for mana in mana_hit_list:
-            mana.remove_from_sprite_lists()
-            arcade.play_sound(self.collect_mana_sound)
             # Add 1 mana
-            self.mana += 1
+            if self.mana < 3:
+                mana.remove_from_sprite_lists()
+                arcade.play_sound(self.collect_mana_sound)
+                self.manahud_list[self.mana].center_y = +60
+                self.mana += 1
+            else:
+                pass
+            
+            
+
         
         # Enemy hit, ouch!
         enemy_hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.scene[settings.LAYER_NAME_ENEMY])
         for enemy in enemy_hit_list:
+            # FIX: IF NO KEY IS PRESSED, CHANGE_X KEEPS MOVING CHARACTER
+            self.hp_sprite_list[self.hp-1].center_y = -100
             self.hp -= 1
             self.left_pressed = False
             self.right_pressed = False
@@ -279,10 +316,12 @@ class NestePlanet(arcade.Window):
             self.down_pressed = False
             self.jump_needs_reset = False
             self.ctrl_pressed = False
+
             self.player_sprite.change_y = settings.HIT_JUMP
+            # What side is the attack coming from?
             if self.player_sprite.center_x - enemy.center_x < 0:
                 self.player_sprite.change_x = -settings.HIT_JUMP
-                # self pressed false
+
             if self.player_sprite.center_x - enemy.center_x > 0:
                 self.player_sprite.change_x = settings.HIT_JUMP
 
