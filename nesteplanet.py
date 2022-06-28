@@ -200,6 +200,7 @@ class NestePlanet(arcade.Window):
 
         # Process attack
         if self.ctrl_pressed:
+            # FIX: Only 1 attack pr. keypress
             if self.mana > 0:
                 self.player_sprite.attack()
                 self.manahud_list[self.mana-1].center_y = -100
