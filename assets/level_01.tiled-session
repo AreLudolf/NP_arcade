@@ -27,19 +27,19 @@
             }
         },
         "level_01.tmj": {
-            "scale": 1.0969,
-            "selectedLayer": 5,
+            "scale": 1.4632,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 757.1337405415261,
-                "y": 2991.156896708907
+                "x": 8002.323674138874,
+                "y": 1504.9207217058502
             }
         },
         "level_01.tmx": {
-            "scale": 0.158,
-            "selectedLayer": 0,
+            "scale": 1.0986,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 2746.8354430379745,
-                "y": 1949.3670886075947
+                "x": 368.1958856726743,
+                "y": 3205.4432914618606
             }
         },
         "tilemapPacck.tsx": {
@@ -58,22 +58,26 @@
             "scaleInEditor": 0.4766
         }
     },
-    "last.imagePath": "C:/Users/areog/Documents/dev/NP_arcade/assets/img/enemies",
+    "last.externalTilesetPath": "C:/Users/areog/Documents/dev/NP_arcade/assets",
+    "last.imagePath": "C:/Users/areog/Documents/dev/NP_arcade/assets/img/items",
     "map.lastUsedFormat": "json",
     "openFiles": [
         "level_01.tmj",
-        "arcade_items.tsx"
+        "arcade_items.tsx",
+        "tileset.tsx"
     ],
     "project": "",
     "property.type": "int",
     "recentFiles": [
+        "level_01.tmx",
+        "tileset.tsx",
         "arcade_items.tsx",
         "level_01.tmj",
-        "level_01.tmx",
         "tilemapPacck.tsx",
         "background.tsx",
-        "tileset.tsx",
         "level_01.json",
         "tileset2.tsx"
-    ]
+    ],
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
+    "tileset.lastUsedFormat": "tsx"
 }

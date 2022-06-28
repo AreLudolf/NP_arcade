@@ -60,6 +60,7 @@ class NestePlanet(arcade.Window):
         self.reset_mana = True
         self.manahud_sprite_list = arcade.SpriteList()
 
+        # Load tiledmap
         map_name = os.path.join(os.path.abspath(__file__), "..", "assets", "level_01.tmj")
         #map_name = "assets/level_01.tmj"
 
@@ -83,18 +84,17 @@ class NestePlanet(arcade.Window):
         self.tile_map = arcade.load_tilemap(map_name, settings.TILE_SCALING, layer_options)
 
 
-        # Init scene
-        self.scene = arcade.Scene.from_tilemap(self.tile_map)
-
-        
+        # Init arcade scene
+        self.scene = arcade.Scene.from_tilemap(self.tile_map)        
         self.scene.add_sprite_list_after("Player", settings.LAYER_NAME_FOREGROUND)
 
-        # Set up the player, specifically placing it at these coordinates.
+        # Set up the player, spawn at coordinates
         self.player_sprite = playerchar.PlayerCharacter()
         self.player_sprite.center_x = settings.PLAYER_START_X
         self.player_sprite.center_y = settings.PLAYER_START_Y
         self.scene.add_sprite("Player", self.player_sprite)
 
+        # Background from tiled?
         if self.tile_map.background_color:
             arcade.set_background_color(self.tile_map.background_color)
 
@@ -103,9 +103,10 @@ class NestePlanet(arcade.Window):
             self.player_sprite, gravity_constant=settings.GRAVITY, walls=self.scene["ground"]
         )
 
+        # Calculate end of map for level cleared.
         self.end_of_map = self.tile_map.width * settings.GRID_PIXEL_SIZE
 
-        # -- ENEMIES
+        # -- ENEMIES setup
         self.enemies_layer = self.tile_map.object_lists[settings.LAYER_NAME_ENEMY]
 
         for en in self.enemies_layer:
@@ -120,7 +121,7 @@ class NestePlanet(arcade.Window):
             enemy.center_x = math.floor(cartesian[0] * settings.TILE_SCALING *self.tile_map.tile_width)
             enemy.center_y = math.floor(cartesian[1] + 1) * (self.tile_map.tile_height * settings.TILE_SCALING) + settings.ENEMY_SPRITE_ADJUSTMENT_Y
             
-            # Does enemy move?
+            # Does enemy move? Move properties set in map
             if "change_x" in en.properties:
                 enemy.change_x = en.properties["change_x"]
             if "boundary_left" in en.properties:
@@ -130,11 +131,12 @@ class NestePlanet(arcade.Window):
 
             self.scene.add_sprite(settings.LAYER_NAME_ENEMY, enemy)
 
+        # Not sure if this works
         self.physics_engine_enemies = arcade.PhysicsEnginePlatformer(
             self.scene[settings.LAYER_NAME_ENEMY], gravity_constant=settings.GRAVITY, walls=self.scene["ground"]
         )
 
-        # Mana count on HUD
+        # Mana count on HUD. HUD items as separate file and class?
         self.manahud_list = arcade.SpriteList(use_spatial_hash=True)
 
         mana_img = main_path = os.path.join(os.path.abspath(__file__), "..", "assets", "img", "items", "mana.png")
@@ -164,13 +166,13 @@ class NestePlanet(arcade.Window):
         """Render the screen."""
         self.clear()
         
-        self.camera.use()
         # Draw sprites
+        self.camera.use()
         self.scene.draw()
 
-        
-        self.gui_camera.use()
 
+        # Draw HUD
+        self.gui_camera.use()
         self.manahud_list.draw()
         self.hp_sprite_list.draw()
 
@@ -179,6 +181,7 @@ class NestePlanet(arcade.Window):
     def process_keychange(self):
         """
         Key up or down
+        UP changed to spacebar. FIX: set controls in settings.py
         """
         # Process up/down
         if self.up_pressed and not self.down_pressed:
@@ -206,7 +209,6 @@ class NestePlanet(arcade.Window):
 
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed."""
-
 
         if key == arcade.key.SPACE:
             self.up_pressed = True
@@ -237,6 +239,7 @@ class NestePlanet(arcade.Window):
 
         self.process_keychange()
 
+
     def center_camera_to_player(self):
         screen_center_x = self.player_sprite.center_x - (self.camera.viewport_width / 2)
         screen_center_y = self.player_sprite.center_y - (
@@ -255,8 +258,6 @@ class NestePlanet(arcade.Window):
     def on_update(self, delta_time):
         """Movement and game logic"""
 
-        for mana in self.manahud_sprite_list:
-            print(mana.center_y)
 
         # Move the player with the physics engine
         self.physics_engine.update()
@@ -274,7 +275,7 @@ class NestePlanet(arcade.Window):
         # Update enemy if moving
         self.scene.update([settings.LAYER_NAME_ENEMY])
 
-        # Check collision with boundary set in Tiledmap
+        # Check enemy collision with boundary set in Tiledmap
         for enemy in self.scene[settings.LAYER_NAME_ENEMY]:
             if (
                 enemy.boundary_right
@@ -304,15 +305,14 @@ class NestePlanet(arcade.Window):
             else:
                 pass
             
-            
-
         
-        # Enemy hit, ouch!
+        # Player hit enemy, ouch!
         enemy_hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.scene[settings.LAYER_NAME_ENEMY])
         for enemy in enemy_hit_list:
             # FIX: IF NO KEY IS PRESSED, CHANGE_X KEEPS MOVING CHARACTER
             self.hp_sprite_list[self.hp-1].center_y = -100
             self.hp -= 1
+            #Cancel all movement and actions
             self.left_pressed = False
             self.right_pressed = False
             self.up_pressed = False
@@ -340,10 +340,13 @@ class NestePlanet(arcade.Window):
 
             arcade.play_sound(self.game_over)
 
-        # DONT TOUCH!?
+        """
+        DONT TOUCH!? Layer from tilemap with traps etc. Currently starts over, change to lose HP
+        """
         if arcade.check_for_collision_with_list(
             self.player_sprite, self.scene[settings.LAYER_NAME_DONT_TOUCH]
         ):
+            # Respawn at start
             self.player_sprite.change_x = 0
             self.player_sprite.change_y = 0
             self.player_sprite.center_x = settings.PLAYER_START_X
@@ -351,6 +354,7 @@ class NestePlanet(arcade.Window):
 
             arcade.play_sound(self.game_over)
 
+        # If end of map, next level(change to door or similar).
         if self.player_sprite.center_x >= self.end_of_map:
             self.level += 1
             print("END OF MAP: " + self.end_of_map)

@@ -42,6 +42,7 @@ class Entity(arcade.Sprite):
         # Set the initial texture
         self.texture = self.idle_texture_pair[0]
 
+        # OBS! Hit box will be set based on the first image used. 
         self.hit_box = self.texture.hit_box_points
 
 
