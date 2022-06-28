@@ -4,7 +4,7 @@
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt3ctOhDAABdD63PmIcaOOLnWhbowf4P9\/ldOoEUdaoVIY6znJTRxDpLC5tpBOCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\/Fe3PblbdEQAwFhP6xyvc\/6e+Pl50REBACW6fR7zEszTAdhep0sPYGJH4a2Lf5vzxM\/H810KAAzWWp+fhWn6PBcA2Db6fHweNvI4y5UBQJo+Nz8H4O\/T5\/ocgL9Pn4ewGnl8zn34vh5vTR6A2lrv8\/0wvt9zae1+AdCG1vppyPz8ZsAxh4nft3a\/AGhDa\/10sc5BJpeZpDp8c46\/28nePJcFAFmt9flvpOb2qXsU966JXe\/5OABL0+efUn1+kjg+rgVczTM0AMhaLT2ALRL7uW8dXmcDsO3Mz6ezE74+W\/8IANSmz6eTWq8HgNpqrben5qqplL5PNuQ81z2p8V66PgdgKbXm591uK9G3z1pf55d+P2rqHbecnZ7P3f8b7A8LwFIOK\/zN2MXdPVtqmrPPzwrPDQC11Vhv31x3rqm0z+N1b67B\/7Ruf1N4bgCoLfbamOfcQzJnn5X2eWlKzg0Atc3dgVNrpc9z7\/XZUxaAn7wCovcixw==",
+         "data":"eJzt3ctum0AYgFHSptn1ouzapnmBpu\/\/evWotYIQYJgLZmbOkf5Fs6ixN58HDzAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA677e+wAAgGR6DgD103MAqJ+eA0D99BwA6qfnAFA\/PQeA+uk5ANQvZ88fLvMhYT5mPBYA6EnOnn++zJeE+ZbxWACgJy9D2pp6PK9DWs\/Dsbz9nz8l3zQANObxMj8W5tPB87PwewWAVtW0H+738L5+j1nDp\/y+77d9AM6spp6nSvl9v6fPCYD6tNaptTV4yu\/7130G1ukAnFFre8pT99hvGQA4m9Z6\/jzoOQD90fP98zak7csDgNz03PocgPrpuZ4DUD89\/7d3PVfPp9fIX8e+eABKar3nj8P+vq9NzOcV9ty3dl0gAOfSes\/nZst16E8Lf9dzAM6otZ5\/H9bvEb90r\/owSw2frvH33gdWzwEorbWep1ha2y99RqHTofW3rlnTcwBK0\/N3Sz1fanE4F7DlmXB6DkBpL\/c+gBMJfZ47D5\/6HFc9B6A06\/N8lp4FE\/bfHdnz8XG4Tg6gD3qez9re+iN7Pn4mjfMCAH0odb597bmlcxN7D\/Qtr\/NrZkqsW+\/d8+u9bMbX4+k5QB9Krc\/HbYsxd5+1uebHPh81pnMPM\/8ef2\/I\/XqxrM8B+vNU4P8MLR6vEUs6sufPCa+dq6vT7zm3vuPoOUAfSpxvn553Lim25+F9T8\/B3zpv\/5rw2tbnAJQUurbnd+4tM21ZSbE9j53Y19ZzAEo6uoG5tdLztX19e\/fu6TlAf\/4C2b0sUw==",
          "encoding":"base64",
          "height":100,
          "id":1,
@@ -18,7 +18,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt1bENADAIA0EmyJDZfwhWSEME6E5y6\/YjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPY5DwMAetNzAPjrFnzqOQDMp+cAMJ+eA0CtBJQkAtk=",
+         "data":"eJzt1VEJAEAIBUET2D+uFe7nwCczsBm2CgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOCefggA2M3PASCfnwNAPj8HgHx+DgB\/DaDdAnc=",
          "encoding":"base64",
          "height":100,
          "id":2,
@@ -55,6 +55,76 @@
          "type":"tilelayer",
          "visible":true,
          "width":500,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":17,
+         "name":"bullets",
+         "objects":[
+                {
+                 "gid":96,
+                 "height":8,
+                 "id":46,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":264.248245920068,
+                 "y":3079.93906268171
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":16,
+         "name":"signs",
+         "objects":[
+                {
+                 "gid":98,
+                 "height":16,
+                 "id":44,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"text",
+                         "type":"string",
+                         "value":"Ser du klippen? Hva ser du i den? Stupet? Utsikten?"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2826.050470985,
+                 "y":2719.94324921502
+                }, 
+                {
+                 "gid":98,
+                 "height":16,
+                 "id":45,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"text",
+                         "type":"string",
+                         "value":"Velkommen til Neste Planet"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":256.371826181339,
+                 "y":3135.88308718068
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -186,6 +256,72 @@
                  "width":0,
                  "x":527.9600848598,
                  "y":3138.16775798736
+                }, 
+                {
+                 "height":0,
+                 "id":40,
+                 "name":"",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"boundary_left",
+                         "type":"int",
+                         "value":2750
+                        }, 
+                        {
+                         "name":"boundary_right",
+                         "type":"int",
+                         "value":3070
+                        }, 
+                        {
+                         "name":"change_x",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"zombie"
+                        }],
+                 "rotation":0,
+                 "type":"zombie",
+                 "visible":true,
+                 "width":0,
+                 "x":1463.85732323232,
+                 "y":2465.27777777778
+                }, 
+                {
+                 "height":0,
+                 "id":41,
+                 "name":"",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"boundary_left",
+                         "type":"int",
+                         "value":3328
+                        }, 
+                        {
+                         "name":"boundary_right",
+                         "type":"int",
+                         "value":3776
+                        }, 
+                        {
+                         "name":"change_x",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"zombie"
+                        }],
+                 "rotation":0,
+                 "type":"zombie",
+                 "visible":true,
+                 "width":0,
+                 "x":1776.35732323232,
+                 "y":2529.98737373737
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -193,8 +329,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":14,
- "nextobjectid":40,
+ "nextlayerid":18,
+ "nextobjectid":47,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.8.5",

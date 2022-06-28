@@ -39,6 +39,8 @@ class NestePlanet(arcade.Window):
         self.level = 1
         self.enemies_layer = None
         self.manahud_sprite_list = None
+        self.can_shoot = False
+        self.shoot_timer = 0
 
 
         arcade.set_background_color(arcade.csscolor.THISTLE)
@@ -48,6 +50,8 @@ class NestePlanet(arcade.Window):
         self.collect_mana_sound = arcade.load_sound(":resources:sounds/coin1.wav")
         self.jump_sound = arcade.load_sound(":resources:sounds/jump1.wav")
         self.game_over = arcade.load_sound(":resources:sounds/gameover1.wav")
+        self.shoot_sound = arcade.load_sound(":resources:sounds/hurt5.wav")
+        self.hit_sound = arcade.load_sound(":resources:sounds/hit5.wav")
 
 
     def setup(self):
@@ -269,12 +273,39 @@ class NestePlanet(arcade.Window):
         else:
             self.player_sprite.can_jump = True
 
+        if self.can_shoot:
+            if self.ctrl_pressed and self.mana >= 1:
+                arcade.play_sound(self.shoot_sound)
+                bullet = arcade.Sprite(
+                    ":resources:images/space_shooter/laserBlue01.png",
+                    settings.SPRITE_SCALING_BULLET,
+                )
+
+                if self.player_sprite.character_face_direction == playerchar.RIGHT_FACING:
+                    bullet.change_x = settings.BULLET_SPEED
+                else:
+                    bullet.change_x = -settings.BULLET_SPEED
+
+                bullet.center_x = self.player_sprite.center_x
+                bullet.center_y = self.player_sprite.center_y
+
+                self.scene.add_sprite(settings.LAYER_NAME_BULLETS, bullet)
+
+                self.can_shoot = False
+        else:
+            self.shoot_timer += 1
+            if self.shoot_timer == settings.SHOOT_SPEED:
+                self.can_shoot = True
+                self.shoot_timer = 0
+
+
+        # Update anumations
         self.scene.update_animation(
             delta_time, [settings.LAYER_NAME_OBJECTS, settings.LAYER_NAME_BACKGROUND, "Player", settings.LAYER_NAME_ENEMY]
         )
 
         # Update enemy if moving
-        self.scene.update([settings.LAYER_NAME_ENEMY])
+        self.scene.update([settings.LAYER_NAME_ENEMY, settings.LAYER_NAME_BULLETS])
 
         # Check enemy collision with boundary set in Tiledmap
         for enemy in self.scene[settings.LAYER_NAME_ENEMY]:
@@ -291,6 +322,41 @@ class NestePlanet(arcade.Window):
                 and enemy.change_x < 0
             ):
                 enemy.change_x *= -1
+
+        # Bullet collision check
+        for bullet in self.scene[settings.LAYER_NAME_BULLETS]:
+            hit_list = arcade.check_for_collision_with_lists(
+                bullet,
+                [
+                    self.scene[settings.LAYER_NAME_ENEMY],
+                    self.scene[settings.LAYER_NAME_GROUND],
+                ],
+            )
+
+            if hit_list:
+                bullet.remove_from_sprite_lists()
+
+                for collision in hit_list:
+                    if (
+                        self.scene[settings.LAYER_NAME_ENEMY]
+                        in collision.sprite_lists
+                    ):
+                        # The collision was with an enemy
+                        collision.health -= settings.BULLET_DAMAGE
+
+                        if collision.health <= 0:
+                            collision.remove_from_sprite_lists()
+
+                        # Hit sound
+                        arcade.play_sound(self.hit_sound)
+
+                return
+
+            if (bullet.right < 0) or (
+                bullet.left
+                > (self.tile_map.width * self.tile_map.tile_width) * settings.TILE_SCALING
+            ):
+                bullet.remove_from_sprite_lists()
 
 
         # Check mana pickup

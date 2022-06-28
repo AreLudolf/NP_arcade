@@ -99,3 +99,4 @@ class ZombieEnemy(Enemy):
 
         # Set up parent class
         super().__init__("zombie", "zombie")
+        self.health = 25
