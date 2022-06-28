@@ -75,6 +75,9 @@ class NestePlanet(arcade.Window):
             },
             settings.LAYER_NAME_OBJECTS: {
                 "use_spatial_hash": True,
+            },
+            settings.LAYER_NAME_MANA: {
+                "use_spatial_hash": True
             }
         }
         self.tile_map = arcade.load_tilemap(map_name, settings.TILE_SCALING, layer_options)
