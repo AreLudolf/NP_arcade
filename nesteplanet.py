@@ -311,6 +311,7 @@ class NestePlanet(arcade.Window):
         enemy_hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.scene[settings.LAYER_NAME_ENEMY])
         for enemy in enemy_hit_list:
             # FIX: IF NO KEY IS PRESSED, CHANGE_X KEEPS MOVING CHARACTER
+            # FIX: Currently take several HP from one enemy attack.
             self.hp_sprite_list[self.hp-1].center_y = -100
             self.hp -= 1
             #Cancel all movement and actions
