@@ -274,6 +274,7 @@ class NestePlanet(arcade.Window):
             self.player_sprite.can_jump = True
 
         if self.can_shoot:
+            # FIX: Cannot shoot with mana = 1?
             if self.ctrl_pressed and self.mana >= 1:
                 arcade.play_sound(self.shoot_sound)
                 bullet = arcade.Sprite(
