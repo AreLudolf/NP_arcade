@@ -243,7 +243,7 @@
                         {
                          "name":"change_x",
                          "type":"int",
-                         "value":1
+                         "value":2
                         }, 
                         {
                          "name":"type",
@@ -276,7 +276,7 @@
                         {
                          "name":"change_x",
                          "type":"int",
-                         "value":1
+                         "value":2
                         }, 
                         {
                          "name":"type",
@@ -309,7 +309,7 @@
                         {
                          "name":"change_x",
                          "type":"int",
-                         "value":1
+                         "value":2
                         }, 
                         {
                          "name":"type",
