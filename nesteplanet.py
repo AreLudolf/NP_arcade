@@ -83,7 +83,14 @@ class NestePlanet(arcade.Window):
             },
             settings.LAYER_NAME_MANA: {
                 "use_spatial_hash": True
+            },
+            settings.LAYER_NAME_SIGN: {
+                "use_spatial_hash": True
+            },
+            settings.LAYER_NAME_SIGNTEXT: {
+                "use_spatial_hash": True
             }
+
         }
         self.tile_map = arcade.load_tilemap(map_name, settings.TILE_SCALING, layer_options)
 
@@ -139,6 +146,14 @@ class NestePlanet(arcade.Window):
         self.physics_engine_enemies = arcade.PhysicsEnginePlatformer(
             self.scene[settings.LAYER_NAME_ENEMY], gravity_constant=settings.GRAVITY, walls=self.scene["ground"]
         )
+
+        # Sign text popup setup
+        self.signtext_layer = self.tile_map.sprite_lists[settings.LAYER_NAME_SIGNTEXT]
+        print(self.signtext_layer)
+        for text in self.signtext_layer:
+            print(text)
+            text.alpha = 0
+
 
         # Mana count on HUD. HUD items as separate file and class?
         self.manahud_list = arcade.SpriteList(use_spatial_hash=True)
@@ -396,6 +411,19 @@ class NestePlanet(arcade.Window):
 
             if self.player_sprite.center_x - enemy.center_x > 0:
                 self.player_sprite.change_x = settings.HIT_JUMP
+
+        # Sign hit?
+        sign_hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.scene[settings.LAYER_NAME_SIGN])
+
+        if sign_hit_list:
+            for text in self.signtext_layer:
+                print(text)
+                text.alpha = 255
+        else:
+            for text in self.signtext_layer:
+                text.alpha = 0
+        
+        
 
 
 
