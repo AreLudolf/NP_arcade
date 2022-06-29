@@ -424,6 +424,7 @@ class NestePlanet(arcade.Window):
                 text.alpha = 0
         
         # KOMMENTAR TIL BENDIK HALLO GIT ER KULT
+        # GIROIJSOFØIJOSØIJE
 
         # Position camera
         self.center_camera_to_player()
