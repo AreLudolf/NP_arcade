@@ -423,9 +423,7 @@ class NestePlanet(arcade.Window):
             for text in self.signtext_layer:
                 text.alpha = 0
         
-        
-
-
+        # KOMMENTAR TIL BENDIK
 
         # Position camera
         self.center_camera_to_player()
