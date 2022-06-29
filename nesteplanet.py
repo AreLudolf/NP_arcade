@@ -223,7 +223,7 @@ class NestePlanet(arcade.Window):
             if self.mana > 0:
                 self.player_sprite.attack()
                 self.manahud_list[self.mana-1].center_y = -100
-                self.mana -= 1
+
             else:
                 print("Out of mana")
 
@@ -290,12 +290,13 @@ class NestePlanet(arcade.Window):
 
         if self.can_shoot:
             # FIX: Cannot shoot with mana = 1?
-            if self.ctrl_pressed and self.mana >= 1:
+            if self.ctrl_pressed and self.mana > 0:
                 arcade.play_sound(self.shoot_sound)
                 bullet = arcade.Sprite(
                     ":resources:images/space_shooter/laserBlue01.png",
                     settings.SPRITE_SCALING_BULLET,
                 )
+                self.mana -= 1
 
                 if self.player_sprite.character_face_direction == playerchar.RIGHT_FACING:
                     bullet.change_x = settings.BULLET_SPEED
