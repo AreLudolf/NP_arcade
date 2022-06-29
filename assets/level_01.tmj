@@ -32,6 +32,20 @@
         }, 
         {
          "compression":"zlib",
+         "data":"eJztzjEJAAAIADALa\/\/TDiKIsCVYBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAT3UdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABW5HUAAAAAAAAAAAAAhhovaADc",
+         "encoding":"base64",
+         "height":100,
+         "id":22,
+         "name":"signtext",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":500,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "compression":"zlib",
          "data":"eJztwTEBAAAAwqD1T20Gf6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgNcADW0AAQ==",
          "encoding":"base64",
          "height":100,
@@ -329,8 +343,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":18,
- "nextobjectid":47,
+ "nextlayerid":23,
+ "nextobjectid":50,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.8.5",
@@ -343,6 +357,10 @@
         {
          "firstgid":73,
          "source":"arcade_items.tsx"
+        }, 
+        {
+         "firstgid":109,
+         "source":"tileset_signs.tsx"
         }],
  "tilewidth":32,
  "type":"map",
