@@ -65,7 +65,7 @@ class NestePlanet(arcade.Window):
         self.manahud_sprite_list = arcade.SpriteList()
 
         # Load tiledmap
-        map_name = os.path.join(os.path.abspath(__file__), "..", "assets", "level_01.tmj")
+        map_name = os.path.join(os.path.dirname(__file__),  "assets", "level_01.tmj")
         #map_name = "assets/level_01.tmj"
 
         layer_options = {
@@ -143,7 +143,7 @@ class NestePlanet(arcade.Window):
         # Mana count on HUD. HUD items as separate file and class?
         self.manahud_list = arcade.SpriteList(use_spatial_hash=True)
 
-        mana_img = main_path = os.path.join(os.path.abspath(__file__), "..", "assets", "img", "items", "mana.png")
+        mana_img = main_path = os.path.join(os.path.dirname(__file__), "assets", "img", "items", "mana.png")
         self.manahud_pos = 30
         for mana in range(self.mana):
             self.manahud_sprite = arcade.Sprite(mana_img, settings.MANA_HUD_SCALING)
@@ -155,7 +155,7 @@ class NestePlanet(arcade.Window):
         # HP count on HUD
         self.hp_sprite_list = arcade.SpriteList(use_spatial_hash=True)
 
-        hp_img = main_path = os.path.join(os.path.abspath(__file__), "..", "assets", "img", "items", "hp.png")
+        hp_img = main_path = os.path.join(os.path.dirname(__file__),   "assets", "img", "items", "hp.png")
         self.hphud_pos = 30
         for mana in range(self.hp):
             self.hphud_sprite = arcade.Sprite(hp_img, settings.HP_HUD_SCALING)

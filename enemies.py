@@ -27,7 +27,7 @@ class Entity(arcade.Sprite):
         self.character_face_direction = RIGHT_FACING
 
         #main_path = f":resources:images/animated_characters/{name_folder}/{name_file}"
-        main_path = os.path.join(os.path.abspath(__file__), "..", "assets", "img", "enemies", "enemy")
+        main_path = os.path.join(os.path.dirname(__file__),  "assets", "img", "enemies", "enemy")
 
         self.idle_texture_pair = load_texture_pair(f"{main_path}_idle.png")
         self.fall_texture_pair = load_texture_pair(f"{main_path}_fall.png")

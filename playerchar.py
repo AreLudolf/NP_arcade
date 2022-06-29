@@ -36,7 +36,7 @@ class PlayerCharacter(arcade.Sprite):
 
         # --- Load Textures ---
         #main_path = "assets/img/player/char"
-        main_path = os.path.join(os.path.abspath(__file__), "..", "assets", "img", "player", "char")
+        main_path = os.path.join(os.path.dirname(__file__), "assets", "img", "player", "char")
 
         # Load textures for idle standing
         self.idle_texture_pair = load_texture_pair(f"{main_path}_idle.gif")
