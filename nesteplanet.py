@@ -431,11 +431,15 @@ class NestePlanet(arcade.Window):
         self.center_camera_to_player()
 
         # Fall off the map?
-        if self.player_sprite.center_y < -100:
+        if self.player_sprite.center_y < -100 or self.hp == 0:
             self.player_sprite.center_x = settings.PLAYER_START_X
             self.player_sprite.center_y = settings.PLAYER_START_Y
-
+            self.hp = 1
+            self.hp_sprite_list[self.hp-1].center_y = +30
             arcade.play_sound(self.game_over)
+
+
+
 
         """
         DONT TOUCH!? Layer from tilemap with traps etc. Currently starts over, change to lose HP
@@ -450,6 +454,7 @@ class NestePlanet(arcade.Window):
             self.player_sprite.center_y = settings.PLAYER_START_Y
 
             arcade.play_sound(self.game_over)
+
 
         # If end of map, next level(change to door or similar).
         if self.player_sprite.center_x >= self.end_of_map:
